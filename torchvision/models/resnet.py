@@ -1,4 +1,3 @@
-import torch
 import torch.nn as nn
 from .utils import load_state_dict_from_url
 
@@ -204,7 +203,7 @@ class ResNet(nn.Module):
         x = self.layer4(x)
 
         x = self.avgpool(x)
-        x = torch.flatten(x, 1)
+        x = x.reshape(x.size(0), -1)
         x = self.fc(x)
 
         return x
